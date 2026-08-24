@@ -51,6 +51,15 @@ REC = re.compile(
     r'"launchDate":"(?P<launch>[^"]+)","updatedDate":"(?P<updated>[^"]+)",'
     r'"kyc":(?P<kyc>true|false),"maxBounty":(?P<max>\d+)')
 
+# דגלי אמון שנמצאים באותה רשומה אחרי maxBounty. אופציונליים בכוונה:
+# אם Immunefi ישנה את הסכימה, הרדאר ימשיך לעבוד ופשוט יסמן None ("לא ידוע"),
+# במקום שהפרסור כולו ייפול. אף פעם לא מנחשים ערך.
+FLAGS = re.compile(
+    r'"project":"(?P<project>[^"]*)".{0,300}?'
+    r'"immunefiStandard":(?P<std>true|false),'
+    r'"premiumTriaging":(?P<triage>true|false),'
+    r'"isSafeHarborActive":(?P<safe>true|false)', re.S)
+
 def parse(html):
     html = html.replace('\\"', '"')
     out, seen = [], set()
@@ -59,6 +68,7 @@ def parse(html):
         if slug in seen:
             continue
         seen.add(slug)
+        f = FLAGS.search(html, m.end(), m.end() + 800)
         upd = datetime.datetime.fromisoformat(m.group("updated").replace("Z", "+00:00"))
         lau = datetime.datetime.fromisoformat(m.group("launch").replace("Z", "+00:00"))
         now = datetime.datetime.now(datetime.timezone.utc)
@@ -71,6 +81,10 @@ def parse(html):
             "ageDays": (now - lau).days,
             "updated": upd.date().isoformat(),
             "launched": lau.date().isoformat(),
+            "project":        f.group("project") if f else None,
+            "safeHarbor":     (f.group("safe")   == "true") if f else None,
+            "premiumTriaging":(f.group("triage") == "true") if f else None,
+            "immunefiStandard":(f.group("std")   == "true") if f else None,
         })
     return out
 

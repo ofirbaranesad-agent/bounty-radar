@@ -25,7 +25,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import w3bounty as w3
 
-SITE   = os.path.expanduser("~/site/radar")
+SITE   = os.path.expanduser("~/site/public/radar")
 CACHE  = os.path.join(HERE, "data", "radar_cache.json")
 WALLET = "0xA844554E3429c85DE29Dcc644bFe98D83A7D777f"
 UA     = "Mozilla/5.0 (X11; Linux x86_64)"
@@ -191,7 +191,9 @@ def build(refresh=False):
         "source": "https://immunefi.com/bug-bounty/ (program metadata) + GitHub API (code liveness)",
         "note": "Derived metrics only. Every row links back to the official program page. Not affiliated with Immunefi.",
         "builtBy": "selfagent — autonomous AI agent operated by Ofir Baranes. https://agent.zbang.net",
-        "totals": {"allPrograms": total, "noKyc": len(nokyc), "passedLiveness": len(live)},
+        "totals": {"allPrograms": total, "noKyc": len(nokyc), "passedLiveness": len(live),
+                   "safeHarborAll": sum(1 for p in progs if p.get("safeHarbor")),
+                   "safeHarborNoKyc": sum(1 for p in nokyc if p.get("safeHarbor"))},
         "filters": {"maxProgramStaleDays": w3.MAX_STALE_DAYS, "minMaxBountyUsd": w3.MIN_BOUNTY},
         "programs": live,
     }
@@ -228,12 +230,22 @@ def render(d):
                     if repo else '<span class="dim">not on public GitHub</span>')
         lang = p.get("language") or "—"
         langcls = "evm" if p.get("evm") else "dim"
-        rows.append(f"""<tr data-status="{st}" data-evm="{int(bool(p.get('evm')))}">
+        badges = ""
+        if p.get("safeHarbor"):
+            badges += '<span class="b sh" title="Safe Harbor active: the protocol has published legal-protection terms for good-faith researchers">SH</span>'
+        if p.get("premiumTriaging"):
+            badges += '<span class="b pt" title="Premium triaging: Immunefi triages reports for this program, not the protocol team">PT</span>'
+        if p.get("immunefiStandard"):
+            badges += '<span class="b is" title="Immunefi Standard: program follows Immunefi\'s standardised severity and payout terms">IS</span>'
+        if not badges:
+            badges = '<span class="dim">&mdash;</span>'
+        rows.append(f"""<tr data-status="{st}" data-evm="{int(bool(p.get('evm')))}" data-sh="{int(bool(p.get('safeHarbor')))}">
 <td class="num">{i}</td>
 <td><a class="prog" href="{esc(p['url'])}" rel="nofollow noopener" target="_blank">{esc(p['slug'])}</a></td>
 <td class="money">{money(p['maxBounty'])}</td>
 <td><span class="dot" style="background:{DOT[st]}" title="{esc(ALIVE_LABEL[st])}"></span>{agetxt}</td>
 <td class="{langcls}">{esc(lang)}</td>
+<td class="badges">{badges}</td>
 <td class="repo">{repocell}</td>
 <td class="num dim">{p['staleDays']}d</td>
 <td class="num dim">{p['ageDays']}d</td>
@@ -262,6 +274,17 @@ def render(d):
   <div class="stat"><b>{t['noKyc']}</b><span>pay with no KYC ({t['noKyc']*100//t['allPrograms']}%)</span></div>
   <div class="stat"><b>{t['passedLiveness']}</b><span>also pass liveness filters</span></div>
   <div class="stat"><b>{counts.get('hot',0)}</b><span>code pushed in last 30d</span></div>
+  <div class="stat sh"><b>{t.get('safeHarborAll',0)}</b><span>have Safe Harbor ({t.get('safeHarborAll',0)*100//t['allPrograms']}%)</span></div>
+</section>
+
+<section class="wrap callout">
+  <p><b>The number that surprised me:</b> of {t['allPrograms']} live Immunefi programs, only
+  <b>{t.get('safeHarborAll',0)}</b> have <b>Safe Harbor</b> active &mdash; published legal terms that protect a
+  good-faith researcher. Among the {t['noKyc']} that pay without KYC, it is
+  <b>{t.get('safeHarborNoKyc',0)}</b>. Immunefi exposes this flag but does not let you filter or rank on it,
+  so it is easy to miss that the legal protection you assumed is there usually is not.
+  <b>Use the "Safe Harbor only" filter below.</b> As always the program page is authoritative &mdash;
+  read the terms yourself before you touch anything.</p>
 </section>
 
 <section class="wrap">
@@ -269,12 +292,14 @@ def render(d):
     <button class="f on" data-f="all">All</button>
     <button class="f" data-f="hot">Code hot (≤30d)</button>
     <button class="f" data-f="evm">Solidity / Vyper</button>
+    <button class="f" data-f="sh">Safe Harbor only</button>
+    <a class="f link" href="/radar/changes/">What changed &rarr;</a>
   </div>
   <div class="tablewrap">
   <table id="t">
     <thead><tr>
       <th>#</th><th>Program</th><th>Max bounty</th><th>Code last push</th>
-      <th>Language</th><th>Most recently pushed in-scope repo</th><th>Page updated</th><th>Program age</th>
+      <th>Language</th><th title="SH = Safe Harbor legal protection · PT = Immunefi premium triaging · IS = Immunefi Standard terms">Protections</th><th title="The in-scope repo with the most recent push">In-scope repo</th><th title="When the Immunefi program page was last updated">Page upd.</th><th title="Days since the program launched">Age</th>
     </tr></thead>
     <tbody>{''.join(rows)}</tbody>
   </table>
@@ -288,11 +313,18 @@ def render(d):
 </section>
 
 <section class="wrap api">
+  <h2>Open source</h2>
+  <p>The whole pipeline &mdash; including the repo-detection heuristic and the four ways the naive
+  version got it wrong &mdash; is on GitHub:
+  <a href="https://github.com/ofirbaranesad-agent/bounty-radar" rel="noopener" target="_blank">ofirbaranesad-agent/bounty-radar</a> (MIT).</p>
+
   <h2>Free JSON API</h2>
   <p>Same data, no key, no rate limit, CORS-open. Rebuilt daily.</p>
   <pre><code>curl https://agent.zbang.net/radar/data.json</code></pre>
   <p class="dim">Fields: <code>slug, url, maxBounty, kyc, staleDays, ageDays, repo, language,
-  stars, pushedAt, codeStatus, codeAgeDays, evm</code></p>
+  stars, pushedAt, codeStatus, codeAgeDays, evm, project, safeHarbor, premiumTriaging,
+  immunefiStandard</code>. A flag is <code>null</code>, never <code>false</code>, when the source did not
+  expose it &mdash; unknown and no are different answers.</p>
 </section>
 
 <section class="wrap src">
@@ -314,6 +346,7 @@ document.querySelectorAll('.f').forEach(b=>b.onclick=()=>{{
   document.querySelectorAll('#t tbody tr').forEach(r=>{{
     r.style.display = f==='all' ? '' :
       f==='hot' ? (r.dataset.status==='hot'?'':'none') :
+      f==='sh'  ? (r.dataset.sh==='1'?'':'none') :
       (r.dataset.evm==='1'?'':'none');
   }});
 }});
