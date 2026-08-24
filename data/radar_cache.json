@@ -1,0 +1,469 @@
+{
+ "sky": {
+  "repos": [
+   "sky-ecosystem/dss-interfaces",
+   "sky-ecosystem/dss",
+   "sky-ecosystem/diamond-pau",
+   "sky-ecosystem/rwa-toolkit",
+   "sky-ecosystem/dss-emergency-spells",
+   "sky-ecosystem/dss-flappers"
+  ],
+  "repoCount": 6,
+  "repo": "sky-ecosystem/diamond-pau",
+  "pushedAt": "2026-08-24",
+  "stars": 931,
+  "language": "Solidity",
+  "archived": false
+ },
+ "sparklend": {
+  "repos": [
+   "marsfoundation/xchain-ssr-oracle",
+   "marsfoundation/spark-alm-controller",
+   "marsfoundation/aave-v3-core",
+   "marsfoundation/sparklend",
+   "marsfoundation/spark-app",
+   "marsfoundation/spark-gov-relay"
+  ],
+  "repoCount": 5,
+  "repo": "marsfoundation/aave-v3-core",
+  "pushedAt": "2026-08-18",
+  "stars": 221,
+  "language": "Solidity",
+  "archived": false
+ },
+ "olympus": {
+  "repos": [
+   "OlympusDAO/olympus-contracts"
+  ],
+  "repoCount": 1,
+  "repo": "OlympusDAO/olympus-contracts",
+  "pushedAt": "2026-08-18",
+  "stars": 720,
+  "language": "Solidity",
+  "archived": false
+ },
+ "gmtrade": {
+  "repos": [
+   "gmsol-labs/gmx-solana"
+  ],
+  "repoCount": 1,
+  "repo": "gmsol-labs/gmx-solana",
+  "pushedAt": "2026-08-22",
+  "stars": 32,
+  "language": "Rust",
+  "archived": false
+ },
+ "alchemix-1": {
+  "repos": [
+   "alchemix-finance/v3",
+   "alchemix-finance/v3-poc"
+  ],
+  "repoCount": 2,
+  "repo": "alchemix-finance/v3",
+  "pushedAt": "2026-08-24",
+  "stars": 11,
+  "language": "Solidity",
+  "archived": false
+ },
+ "rhinofi": {
+  "repos": [
+   "rhinofi/contracts_public"
+  ],
+  "repoCount": 1,
+  "repo": "rhinofi/contracts_public",
+  "pushedAt": "2025-03-12",
+  "stars": 25,
+  "language": "Solidity",
+  "archived": false
+ },
+ "lido": {
+  "repos": [
+   "lidofinance/easy-track",
+   "lidofinance/core",
+   "lidofinance/aave-delivery-infrastructure",
+   "lidofinance/governance-crosschain-bridges",
+   "lidofinance/lido-l2",
+   "lidofinance/lido-l2-with-steth"
+  ],
+  "repoCount": 6,
+  "repo": "lidofinance/easy-track",
+  "pushedAt": "2026-08-24",
+  "stars": 554,
+  "language": "TypeScript",
+  "archived": false
+ },
+ "originprotocol": {
+  "repos": [
+   "OriginProtocol/arm-oeth"
+  ],
+  "repoCount": 1,
+  "repo": "OriginProtocol/arm-oeth",
+  "pushedAt": "2026-08-24",
+  "stars": 15,
+  "language": "Solidity",
+  "archived": false
+ },
+ "balancer": {
+  "repos": [
+   "balancer/balancer-v3-monorepo",
+   "balancer/balancer-v2-monorepo",
+   "balancer/reclamm"
+  ],
+  "repoCount": 3,
+  "repo": "balancer/balancer-v3-monorepo",
+  "pushedAt": "2026-08-21",
+  "stars": 508,
+  "language": "Solidity",
+  "archived": false
+ },
+ "enzyme-onyx": {
+  "repos": [
+   "enzymefinance/protocol-onyx",
+   "enzymefinance/onyx-sdk"
+  ],
+  "repoCount": 2,
+  "repo": "enzymefinance/onyx-sdk",
+  "pushedAt": "2026-08-17",
+  "stars": 17,
+  "language": "TypeScript",
+  "archived": false
+ },
+ "orca": {
+  "repos": [
+   "orca-so/xorca",
+   "orca-so/whirlpools"
+  ],
+  "repoCount": 2,
+  "repo": "orca-so/whirlpools",
+  "pushedAt": "2026-08-24",
+  "stars": 547,
+  "language": "TypeScript",
+  "archived": false
+ },
+ "benqi": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "zest-protocol-v2": {
+  "repos": [
+   "Zest-Protocol/zest-v2-contracts"
+  ],
+  "repoCount": 1,
+  "repo": "Zest-Protocol/zest-v2-contracts",
+  "pushedAt": "2026-05-12",
+  "stars": 6,
+  "language": "Clarity",
+  "archived": false
+ },
+ "raydium": {
+  "repos": [
+   "raydium-io/raydium-amm-v3",
+   "raydium-io/raydium-cp-swap",
+   "raydium-io/raydium-amm"
+  ],
+  "repoCount": 3,
+  "repo": "raydium-io/raydium-amm-v3",
+  "pushedAt": "2026-08-19",
+  "stars": 994,
+  "language": "Rust",
+  "archived": false
+ },
+ "magpiexyz": {
+  "repos": [
+   "magpiexyz/contracts"
+  ],
+  "repoCount": 1,
+  "repo": "magpiexyz/contracts",
+  "pushedAt": "2023-06-05",
+  "stars": 3,
+  "language": "Solidity",
+  "archived": false
+ },
+ "listadao": {
+  "repos": [
+   "lista-dao/synclub-contracts",
+   "lista-dao/moolah",
+   "lista-dao/lista-token"
+  ],
+  "repoCount": 0,
+  "repo": "lista-dao/synclub-contracts",
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": true
+ },
+ "enzymefinance": {
+  "repos": [
+   "enzymefinance/protocol"
+  ],
+  "repoCount": 1,
+  "repo": "enzymefinance/protocol",
+  "pushedAt": "2026-05-29",
+  "stars": 553,
+  "language": "Solidity",
+  "archived": false
+ },
+ "Aevo": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "hermetica": {
+  "repos": [
+   "hermetica-fi/hermetica-contracts"
+  ],
+  "repoCount": 1,
+  "repo": "hermetica-fi/hermetica-contracts",
+  "pushedAt": "2026-04-16",
+  "stars": 3,
+  "language": "Clarity",
+  "archived": false
+ },
+ "yearnfinance": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "hydration": {
+  "repos": [
+   "galacticcouncil/HydraDX-node",
+   "galacticcouncil/hydration-node",
+   "galacticcouncil/apps",
+   "galacticcouncil/Hydradx-ui"
+  ],
+  "repoCount": 4,
+  "repo": "galacticcouncil/HydraDX-node",
+  "pushedAt": "2026-08-24",
+  "stars": 438,
+  "language": "TypeScript",
+  "archived": false
+ },
+ "pancakeswap": {
+  "repos": [
+   "pancakeswap/infinity-universal-router",
+   "pancakeswap/pancake-v3-contracts",
+   "pancakeswap/infinity-core",
+   "pancakeswap/infinity-periphery",
+   "pancakeswap/pancake-swap-periphery"
+  ],
+  "repoCount": 0,
+  "repo": "pancakeswap/infinity-universal-router",
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": true
+ },
+ "ankr": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "stackingdao": {
+  "repos": [
+   "StackingDAO/contracts",
+   "StackingDAO/stackingdao-smart-contracts"
+  ],
+  "repoCount": 2,
+  "repo": "StackingDAO/stackingdao-smart-contracts",
+  "pushedAt": "2026-08-13",
+  "stars": 15,
+  "language": "Clarity",
+  "archived": false
+ },
+ "termstructurelabs": {
+  "repos": [
+   "term-structure/termmax-contract-v2"
+  ],
+  "repoCount": 1,
+  "repo": "term-structure/termmax-contract-v2",
+  "pushedAt": "2026-08-13",
+  "stars": 9,
+  "language": "Solidity",
+  "archived": false
+ },
+ "ens": {
+  "repos": [
+   "ensdomains/ensdomains-landing",
+   "ensdomains/ens-app-v3",
+   "ensdomains/ens-metadata-service",
+   "ensdomains/ens-contracts"
+  ],
+  "repoCount": 3,
+  "repo": "ensdomains/ens-app-v3",
+  "pushedAt": "2026-08-24",
+  "stars": 987,
+  "language": "TypeScript",
+  "archived": false
+ },
+ "twyne": {
+  "repos": [
+   "0xTwyne/twyne-contracts-v1",
+   "0xTwyne/aave-v3-aToken-wrapper"
+  ],
+  "repoCount": 2,
+  "repo": "0xTwyne/twyne-contracts-v1",
+  "pushedAt": "2026-06-30",
+  "stars": 8,
+  "language": "Solidity",
+  "archived": false
+ },
+ "justlenddao": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "synthetix": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "vesper": {
+  "repos": [
+   "vesperfi/vesper-pools"
+  ],
+  "repoCount": 1,
+  "repo": "vesperfi/vesper-pools",
+  "pushedAt": null,
+  "stars": 10,
+  "language": "Solidity",
+  "archived": false
+ },
+ "usdn": {
+  "repos": [
+   "bailsec/BailSec"
+  ],
+  "repoCount": 1,
+  "repo": "bailsec/BailSec",
+  "pushedAt": "2026-08-17",
+  "stars": 24,
+  "language": null,
+  "archived": false
+ },
+ "obyte": {
+  "repos": [
+   "byteball/ocore",
+   "byteball/obyte-gui-wallet",
+   "byteball/counterstake-bridge",
+   "byteball/obyte-cascading-donations",
+   "byteball/prediction-markets-aa",
+   "byteball/perpetual-aa"
+  ],
+  "repoCount": 6,
+  "repo": "byteball/ocore",
+  "pushedAt": "2026-08-23",
+  "stars": 593,
+  "language": "JavaScript",
+  "archived": false
+ },
+ "thresholdnetwork": {
+  "repos": [
+   "threshold-network/tbtc-v2",
+   "threshold-network/token-dashboard",
+   "threshold-network/solidity-contracts"
+  ],
+  "repoCount": 2,
+  "repo": "threshold-network/tbtc-v2",
+  "pushedAt": "2026-08-23",
+  "stars": 135,
+  "language": "JavaScript",
+  "archived": false
+ },
+ "pareto": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "hashflow": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "mux": {
+  "repos": [
+   "mux-world/mux-protocol",
+   "mux-world/mux-aggregator-protocol",
+   "mux-world/mux-degen-protocol",
+   "mux-world/mux3-protocol",
+   "mux-world/mux-staking"
+  ],
+  "repoCount": 4,
+  "repo": "mux-world/mux-aggregator-protocol",
+  "pushedAt": "2026-06-15",
+  "stars": 41,
+  "language": "Solidity",
+  "archived": false
+ },
+ "charm": {
+  "repos": [
+   "charmfinance/alpha-vaults-v2-contracts"
+  ],
+  "repoCount": 1,
+  "repo": "charmfinance/alpha-vaults-v2-contracts",
+  "pushedAt": "2023-07-06",
+  "stars": 13,
+  "language": "Solidity",
+  "archived": false
+ },
+ "gammaswap": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "blockpinetwork": {
+  "repos": [],
+  "repoCount": 0,
+  "repo": null,
+  "pushedAt": null,
+  "stars": 0,
+  "language": null,
+  "archived": false
+ },
+ "mtpelerin": {
+  "repos": [
+   "MtPelerin/bridge-v2"
+  ],
+  "repoCount": 1,
+  "repo": "MtPelerin/bridge-v2",
+  "pushedAt": "2023-11-13",
+  "stars": 55,
+  "language": "JavaScript",
+  "archived": false
+ }
+}
