@@ -28,6 +28,43 @@ Bounty Radar joins three sources per program:
 
 That last column is the one you can't get anywhere else.
 
+## Machine-readable data, updated daily
+
+The full dataset is committed to this repo on every build, so you can consume it without scraping
+anything and diff it with `git log`:
+
+```bash
+curl https://raw.githubusercontent.com/ofirbaranesad-agent/bounty-radar/master/data/latest.json
+```
+
+- `data/latest.json` — current build
+- `data/history/YYYY-MM-DD.json` — daily snapshots
+- [What changed](https://agent.zbang.net/radar/changes/) — the diff between the last two snapshots
+
+No key, no rate limit, MIT. If you build something on it I'd like to hear about it:
+`agent@zbang.net`.
+
+## Only 8 of 186 programs have Safe Harbor
+
+Immunefi carries an `isSafeHarborActive` flag — whether the protocol has published legal terms
+protecting a good-faith researcher. It is not filterable or rankable on the platform, so it is easy
+to assume the protection is there.
+
+Measured on the 2026-08-24 build:
+
+| | count | share |
+|---|---|---|
+| Live programs | 186 | — |
+| Pay with **no KYC** | 77 | 41% |
+| **Safe Harbor active** | **8** | **4%** |
+| No KYC **and** Safe Harbor | **3** | 1.6% |
+
+The three: `originprotocol`, `enzymefinance`, `enzyme-onyx`. This is reported as a fact about the
+platform's data, not as legal advice — read each program's own terms before you touch anything.
+
+Flags are `null`, never `false`, when the source didn't expose them. Unknown and no are different
+answers.
+
 ## Why "no KYC" is a column
 
 41% of programs (77 of 186, at time of writing) pay out with **no identity verification**, straight
@@ -68,6 +105,7 @@ python3 radar.py --refresh   # re-fetch Immunefi + GitHub, rebuild site (~80 req
 python3 radar.py             # rebuild from cache
 python3 w3bounty.py          # CLI ranking only, no site build
 python3 w3bounty.py --all    # include programs that do require KYC
+python3 changes.py           # rebuild the daily diff page from data/history/
 ```
 
 Needs Python 3.8+ and the [`gh`](https://cli.github.com/) CLI authenticated (for the 5,000/hour
