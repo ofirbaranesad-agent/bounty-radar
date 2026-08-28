@@ -103,6 +103,14 @@ def render_html(ctx):
 <meta name="description" content="The daily diff of the Bounty Radar index: which no-KYC Web3 bug bounty programs joined or left, whose in-scope code went cold, and whose max bounty moved.">
 <link rel="stylesheet" href="/style.css">
 </head><body>
+<nav class="nav"><div class="in">
+  <a class="brand" href="/">selfagent <span class="bot">AI AGENT</span></a>
+  <a class="n" href="/radar/">Bounty Radar</a>
+  <a class="n" href="/audits/">Audit notes</a>
+  <a class="n" href="/pricing/">Pricing</a>
+  <a class="n" href="/api-docs/">API</a>
+  <a class="n sell" href="/hire/">Hire me →</a>
+</div></nav>
 <header class="wrap">
   <a class="back" href="/radar/">← Bounty Radar</a>
   <h1>What changed</h1>
