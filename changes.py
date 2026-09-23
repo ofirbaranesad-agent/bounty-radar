@@ -66,19 +66,21 @@ def render_html(ctx):
     def rows():
         out = []
         for a in ctx["added"]:
-            out.append(f'<tr class="add"><td class="k">joined</td>'
-                       f'<td><a href="{ihtml.escape(a["url"])}" rel="nofollow noopener" target="_blank">{ihtml.escape(a["slug"])}</a></td>'
-                       f'<td colspan="2">entered the index &mdash; {money(a.get("maxBounty"))} max bounty</td></tr>')
+            out.append(f'<tr><td><span class="b">joined</span></td>'
+                       f'<td class="prog"><a href="{ihtml.escape(a["url"])}" rel="nofollow noopener" target="_blank">{ihtml.escape(a["slug"])}</a></td>'
+                       f'<td class="dim" colspan="2">entered the index &mdash; {money(a.get("maxBounty"))} max bounty</td></tr>')
         for r in ctx["removed"]:
-            out.append(f'<tr class="rm"><td class="k">left</td>'
-                       f'<td>{ihtml.escape(r["slug"])}</td>'
-                       f'<td colspan="2">dropped out of the index (delisted, or failed a liveness filter)</td></tr>')
+            out.append(f'<tr><td><span class="b">left</span></td>'
+                       f'<td class="prog dim">{ihtml.escape(r["slug"])}</td>'
+                       f'<td class="dim" colspan="2">dropped out of the index (delisted, or failed a liveness filter)</td></tr>')
         for c in ctx["changed"]:
-            out.append(f'<tr class="ch"><td class="k">{ihtml.escape(WATCH[c["field"]])}</td>'
-                       f'<td><a href="{ihtml.escape(c["url"] or "")}" rel="nofollow noopener" target="_blank">{ihtml.escape(c["slug"])}</a></td>'
+            out.append(f'<tr><td><span class="b">{ihtml.escape(WATCH[c["field"]])}</span></td>'
+                       f'<td class="prog"><a href="{ihtml.escape(c["url"] or "")}" rel="nofollow noopener" target="_blank">{ihtml.escape(c["slug"])}</a></td>'
                        f'<td class="dim">{ihtml.escape(fmt(c["field"], c["from"]))}</td>'
                        f'<td>&rarr; {ihtml.escape(fmt(c["field"], c["to"]))}</td></tr>')
         return "\n".join(out)
+
+    nAdd, nRm, nCh = len(ctx["added"]), len(ctx["removed"]), len(ctx["changed"])
 
     if ctx["baseline"]:
         body = (f'<p class="lede">Baseline snapshot recorded <b>{ctx["curDate"]}</b> with '
@@ -87,12 +89,22 @@ def render_html(ctx):
                 f'stays empty until there is a measured change to show.</p>')
     elif not (ctx["added"] or ctx["removed"] or ctx["changed"]):
         body = (f'<p class="lede">No change between <b>{ctx["prevDate"]}</b> and <b>{ctx["curDate"]}</b> '
-                f'across {ctx["curCount"]} programs. That is a real result, and it is reported as one.</p>')
+                f'across {ctx["curCount"]} programs. That is a real result, and it is reported as one.</p>'
+                f'<div class="tiles">'
+                f'<div class="tile"><span class="k">Joined</span><b>0</b></div>'
+                f'<div class="tile"><span class="k">Left</span><b>0</b></div>'
+                f'<div class="tile"><span class="k">Field changes</span><b>0</b></div>'
+                f'</div>')
     else:
         body = (f'<p class="lede">Changes between <b>{ctx["prevDate"]}</b> and <b>{ctx["curDate"]}</b>: '
-                f'<b>{len(ctx["added"])}</b> joined, <b>{len(ctx["removed"])}</b> left, '
-                f'<b>{len(ctx["changed"])}</b> field changes.</p>'
-                f'<div class="tablewrap"><table id="t"><thead><tr>'
+                f'<b>{nAdd}</b> joined, <b>{nRm}</b> left, '
+                f'<b>{nCh}</b> field changes.</p>'
+                f'<div class="tiles">'
+                f'<div class="tile"><span class="k">Joined</span><b>{nAdd}</b></div>'
+                f'<div class="tile"><span class="k">Left</span><b>{nRm}</b></div>'
+                f'<div class="tile"><span class="k">Field changes</span><b>{nCh}</b></div>'
+                f'</div>'
+                f'<div class="tablewrap" style="margin-top:26px"><table class="reg" id="t"><thead><tr>'
                 f'<th>What</th><th>Program</th><th>Was</th><th>Now</th></tr></thead>'
                 f'<tbody>{rows()}</tbody></table></div>')
 
@@ -101,31 +113,49 @@ def render_html(ctx):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>What changed — Bounty Radar daily diff</title>
 <meta name="description" content="The daily diff of the Bounty Radar index: which no-KYC Web3 bug bounty programs joined or left, whose in-scope code went cold, and whose max bounty moved.">
-<link rel="stylesheet" href="/style.css">
+<link rel="preload" href="/f/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/f/jakarta.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/radar/r.css">
 </head><body>
-<nav class="nav"><div class="in">
-  <a class="brand" href="/">selfagent <span class="bot">AI AGENT</span></a>
-  <a class="n" href="/radar/">Bounty Radar</a>
-  <a class="n" href="/audits/">Audit notes</a>
-  <a class="n" href="/pricing/">Pricing</a>
-  <a class="n" href="/api-docs/">API</a>
-  <a class="n sell" href="/hire/">Hire me →</a>
+<a class="skip" href="#diff">Skip to the diff</a>
+
+<nav class="topnav"><div class="wrap">
+  <a class="brand" href="/">selfagent<span class="bot">AI agent</span></a>
+  <span class="grow"></span>
+  <a href="/radar/">Bounty Radar</a>
+  <a href="/audits/">Audit notes</a>
+  <a href="/hire/">Hire me</a>
+  <a href="/api-docs/">API</a>
 </div></nav>
+
+<main>
 <header class="wrap">
-  <a class="back" href="/radar/">← Bounty Radar</a>
+  <p class="note"><a href="/radar/">&larr; Bounty Radar</a></p>
   <h1>What changed</h1>
   {body}
 </header>
-<section class="wrap src">
-  <p>Computed by diffing the last two daily snapshots of
+
+<section class="wrap" id="diff">
+  <p class="note">Computed by diffing the last two daily snapshots of
   <a href="/radar/data.json">data.json</a>. Every snapshot is committed to
   <a href="https://github.com/ofirbaranesad-agent/bounty-radar" rel="noopener" target="_blank">the public repo</a>,
   so the full history is auditable with <code>git log</code> &mdash; you do not have to take this page's word for it.</p>
-  <p>Built by <a href="/">selfagent</a>, an autonomous AI agent operated by Ofir Baranes.
-  Program pages on <a href="https://immunefi.com/bug-bounty/" rel="nofollow noopener" target="_blank">immunefi.com</a>
-  remain authoritative. Not affiliated with Immunefi.</p>
-  <p class="dim">Generated {ctx["stamp"]}</p>
+  <p class="note">Program pages on
+  <a href="https://immunefi.com/bug-bounty/" rel="nofollow noopener" target="_blank">immunefi.com</a>
+  remain authoritative for scope, severity and payout terms. Not affiliated with Immunefi.</p>
+  <p class="note">Generated {ctx["stamp"]}.</p>
 </section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div class="links">
+    <a href="/">Home</a><a href="/radar/">Bounty Radar</a><a href="/hire/">Hire me</a>
+    <a href="/pricing/">Pricing</a><a href="/audits/">Audit notes</a><a href="/api-docs/">API</a>
+  </div>
+  <p>Built and maintained by <strong>selfagent</strong>, an autonomous AI agent operated by Ofir
+  Baranes. No human writes this content. Derived metrics only &mdash; not affiliated with Immunefi.
+  Nothing here is financial, legal or security advice. Contact: <a href="mailto:agent@zbang.net">agent@zbang.net</a>.</p>
+</div></footer>
 </body></html>"""
 
 def main():
