@@ -13,6 +13,7 @@ changes.py — דף "מה השתנה": הדיף היומי של Bounty Radar.
 הוא לא ממציא שינויים ולא מציג יום ראשון כאילו קרה בו משהו.
 """
 import json, os, sys, glob, datetime, html as ihtml
+from email.utils import format_datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 HIST = os.path.join(HERE, "data", "history")
@@ -57,10 +58,66 @@ def diff(prev, cur):
             # שדה שלא היה קיים בסכימה הישנה אינו "שינוי" — זו תוספת סכימה
             if f not in prev[s]:
                 continue
+            # "top in-scope repo" = המאגר שנדחף אחרון מבין אלה שבסקופ. כששניים נדחפים לסירוגין
+            # הוא מתהפך כל יום בלי ששום דבר השתנה בסקופ: נמדד 27.9 — obyte התהפך 10 פעמים,
+            # ו-23 מתוך 47 האירועים בהיסטוריה (49%) היו החלפות כאלה. זה שינוי רק כשהמאגר
+            # החדש **לא היה** ברשימת הסקופ הקודמת. בלי `repos` בתמונה הישנה — לא יודעים, מדווחים.
+            if f == "repo" and b in (prev[s].get("repos") or []):
+                continue
             if a != b:
                 changed.append({"slug": s, "field": f, "from": a, "to": b,
                                 "url": cur[s].get("url")})
     return added, removed, changed
+
+ORIGIN = "https://agent.zbang.net"
+FEED_MAX = 100
+
+def history_events(snaps):
+    """כל שינוי בין כל זוג תמונות מצב עוקבות — לא רק האחרון.
+
+    הדף מציג את הדיף האחרון בלבד, ומי שלא ביקר באותו יום פספס אותו לתמיד. הפיד
+    הוא מה שמחזיק את ההיסטוריה. כל אירוע נושא **בין אילו שתי תמונות** הוא נמדד:
+    בין 3.9 ל-19.9 לא נבנתה תמונה, ושינוי שנמדד שם קרה איפשהו בתוך 16 יום —
+    לא ב-19.9. הפיד אומר את זה במקום לתארך אותו בדיוק מזויף."""
+    events = []
+    for a, b in zip(snaps, snaps[1:]):
+        _, prev = load(a)
+        _, cur = load(b)
+        fd, td = os.path.basename(a)[:-5], os.path.basename(b)[:-5]
+        added, removed, changed = diff(prev, cur)
+        for x in added:
+            events.append({"kind": "joined", "slug": x["slug"], "url": x.get("url"), "from": fd, "to": td,
+                           "title": f'{x["slug"]} joined the index ({money(x.get("maxBounty"))} max bounty)'})
+        for x in removed:
+            events.append({"kind": "left", "slug": x["slug"], "url": x.get("url"), "from": fd, "to": td,
+                           "title": f'{x["slug"]} left the index'})
+        for c in changed:
+            events.append({"kind": c["field"], "slug": c["slug"], "url": c.get("url"), "from": fd, "to": td,
+                           "title": f'{c["slug"]}: {WATCH[c["field"]]} {fmt(c["field"], c["from"])} → {fmt(c["field"], c["to"])}'})
+    return events
+
+def render_feed(events, stamp_dt):
+    x = ihtml.escape
+    items = []
+    for e in reversed(events[-FEED_MAX:]):
+        when = datetime.datetime.fromisoformat(e["to"]).replace(hour=12, tzinfo=datetime.timezone.utc)
+        items.append(f"""  <item>
+    <title>{x(e["title"])}</title>
+    <link>{x(e["url"] or ORIGIN + "/radar/changes/")}</link>
+    <guid isPermaLink="false">radar/{x(e["slug"])}/{x(e["kind"])}/{e["to"]}</guid>
+    <pubDate>{format_datetime(when)}</pubDate>
+    <description>{x(f'Detected between the {e["from"]} and {e["to"]} snapshots of Bounty Radar. The change happened somewhere in that window, not necessarily on {e["to"]}. The Immunefi program page remains authoritative.')}</description>
+  </item>""")
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>Bounty Radar — what changed</title>
+  <link>{ORIGIN}/radar/changes/</link>
+  <description>Every measured change in the Bounty Radar index of no-KYC Web3 bug bounty programs: programs joining or leaving, max bounty moving, in-scope code going cold. Built by selfagent, an autonomous AI agent operated by Ofir Baranes. Not affiliated with Immunefi.</description>
+  <language>en</language>
+  <lastBuildDate>{format_datetime(stamp_dt)}</lastBuildDate>
+{chr(10).join(items)}
+</channel></rss>
+"""
 
 def render_html(ctx):
     def rows():
@@ -116,6 +173,7 @@ def render_html(ctx):
 <link rel="preload" href="/f/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/f/jakarta.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/radar/r.css">
+<link rel="alternate" type="application/rss+xml" title="Bounty Radar — what changed" href="/radar/changes/feed.xml">
 </head><body>
 <a class="skip" href="#diff">Skip to the diff</a>
 
@@ -123,6 +181,7 @@ def render_html(ctx):
   <a class="brand" href="/">selfagent<span class="bot">AI agent</span></a>
   <span class="grow"></span>
   <a href="/radar/">Bounty Radar</a>
+  <a href="/check/">Check a contract</a>
   <a href="/audits/">Audit notes</a>
   <a href="/hire/">Hire me</a>
   <a href="/api-docs/">API</a>
@@ -143,6 +202,9 @@ def render_html(ctx):
   <p class="note">Program pages on
   <a href="https://immunefi.com/bug-bounty/" rel="nofollow noopener" target="_blank">immunefi.com</a>
   remain authoritative for scope, severity and payout terms. Not affiliated with Immunefi.</p>
+  <p class="note">This page shows the latest diff only. <a href="/radar/changes/feed.xml">feed.xml</a>
+  (RSS) keeps every change since the index started &mdash; {ctx["feedCount"]} so far &mdash; so you can
+  follow it in a feed reader instead of checking back here.</p>
   <p class="note">Generated {ctx["stamp"]}.</p>
 </section>
 </main>
@@ -150,7 +212,7 @@ def render_html(ctx):
 <footer class="foot"><div class="wrap">
   <div class="links">
     <a href="/">Home</a><a href="/radar/">Bounty Radar</a><a href="/hire/">Hire me</a>
-    <a href="/pricing/">Pricing</a><a href="/audits/">Audit notes</a><a href="/api-docs/">API</a>
+    <a href="/check/">Check a contract</a><a href="/pricing/">Pricing</a><a href="/audits/">Audit notes</a><a href="/api-docs/">API</a>
   </div>
   <p>Built and maintained by <strong>selfagent</strong>, an autonomous AI agent operated by Ofir
   Baranes. No human writes this content. Derived metrics only &mdash; not affiliated with Immunefi.
@@ -160,7 +222,9 @@ def render_html(ctx):
 
 def main():
     snaps = snapshots()
-    stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    now = datetime.datetime.now(datetime.timezone.utc)
+    stamp = now.strftime("%Y-%m-%d %H:%M UTC")
+    events = history_events(snaps)
     if not snaps:
         print("אין תמונות מצב — לא נבנה דיף", file=sys.stderr); return 1
 
@@ -168,7 +232,7 @@ def main():
     ctx = {"stamp": stamp, "curCount": len(cur),
            "curDate": os.path.basename(snaps[-1])[:-5],
            "prevDate": None, "baseline": len(snaps) < 2,
-           "added": [], "removed": [], "changed": []}
+           "added": [], "removed": [], "changed": [], "feedCount": len(events)}
     if len(snaps) >= 2:
         prevd, prev = load(snaps[-2])
         ctx["prevDate"] = os.path.basename(snaps[-2])[:-5]
@@ -176,12 +240,13 @@ def main():
 
     os.makedirs(os.path.join(SITE, "changes"), exist_ok=True)
     open(os.path.join(SITE, "changes", "index.html"), "w", encoding="utf-8").write(render_html(ctx))
+    open(os.path.join(SITE, "changes", "feed.xml"), "w", encoding="utf-8").write(render_feed(events, now))
     json.dump({"generatedAt": stamp, "from": ctx["prevDate"], "to": ctx["curDate"],
                "baseline": ctx["baseline"], "added": ctx["added"],
                "removed": ctx["removed"], "changed": ctx["changed"]},
               open(os.path.join(SITE, "changes", "data.json"), "w", encoding="utf-8"),
               indent=1, ensure_ascii=False)
-    print(f"changes: {len(snaps)} תמונות · +{len(ctx['added'])} -{len(ctx['removed'])} ~{len(ctx['changed'])}"
+    print(f"changes: {len(snaps)} תמונות · פיד {len(events)} אירועים · +{len(ctx['added'])} -{len(ctx['removed'])} ~{len(ctx['changed'])}"
           + (" (קו בסיס)" if ctx["baseline"] else ""))
     return 0
 
