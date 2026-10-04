@@ -368,6 +368,10 @@ def render(d):
   cross-referenced with GitHub so you can see whether the in-scope code has
   <strong>actually moved recently</strong>. Immunefi's &ldquo;updated&rdquo; date tracks the
   <em>program page</em>. This tracks the <em>code</em>.</p>
+  <p class="verdict" style="margin-top:14px"><b>Hunting one of these?</b> <a href="/check/">Check who
+  controls the contract first</a> &mdash; free preview, $5 for the permanent page.
+  <b>Building one instead?</b> <a href="/hire/">I review the Solidity</a> &mdash; $900 full review,
+  $150 automated scan.</p>
 </header>
 
 <section class="wrap">
