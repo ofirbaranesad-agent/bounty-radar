@@ -180,7 +180,7 @@ def build(refresh=False):
     if os.path.exists(CACHE):
         cache = json.load(open(CACHE, encoding="utf-8"))
 
-    live = [p for p in nokyc if p["staleDays"] <= w3.MAX_STALE_DAYS and p["maxBounty"] >= w3.MIN_BOUNTY]
+    live = [p for p in nokyc if p["staleDays"] <= w3.MAX_STALE_DAYS and p["maxBounty"] >= w3.MIN_BOUNTY and not p["paused"]]
     live.sort(key=w3.score, reverse=True)
 
     if refresh:

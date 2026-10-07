@@ -49,6 +49,7 @@ def fetch(use_cache=True):
 REC = re.compile(
     r'"slug":"(?P<slug>[^"]+)","url":"(?P<url>[^"]+)",'
     r'"launchDate":"(?P<launch>[^"]+)","updatedDate":"(?P<updated>[^"]+)",'
+    r'"pausedAt":(?P<paused>null|"[^"]+"),'
     r'"kyc":(?P<kyc>true|false),"maxBounty":(?P<max>\d+)')
 
 # דגלי אמון שנמצאים באותה רשומה אחרי maxBounty. אופציונליים בכוונה:
@@ -75,6 +76,7 @@ def parse(html):
         out.append({
             "slug": slug,
             "url": "https://immunefi.com" + m.group("url"),
+            "paused": m.group("paused") != "null",
             "kyc": m.group("kyc") == "true",
             "maxBounty": int(m.group("max")),
             "staleDays": (now - upd).days,
