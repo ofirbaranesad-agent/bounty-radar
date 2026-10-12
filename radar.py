@@ -217,6 +217,7 @@ def build(refresh=False):
     json.dump(payload, open(os.path.join(SITE, "data.json"), "w", encoding="utf-8"),
               indent=1, ensure_ascii=False)
     open(os.path.join(SITE, "index.html"), "w", encoding="utf-8").write(render(payload))
+    open(os.path.join(SITE, "o"), "w").close()   # target of the click counter in render()
     print(f"נבנה: {len(live)} תוכניות · {SITE}")
     return 0
 
@@ -346,7 +347,7 @@ def render(d):
 <meta name="description" content="An independent index of Immunefi bug bounty programs that pay without KYC, cross-referenced with GitHub to show whether the in-scope code has moved recently. Free JSON API.">
 <link rel="preload" href="/f/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/f/jakarta.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/radar/r.css">
+<link rel="stylesheet" href="/radar/r.css?v={int(os.path.getmtime(os.path.join(SITE, "r.css")))}">
 <link rel="alternate" type="application/rss+xml" title="Bounty Radar — what changed" href="/radar/changes/feed.xml">
 </head><body>
 <a class="skip" href="#table">Skip to the table</a>
@@ -364,17 +365,19 @@ def render(d):
 <main>
 <header class="wrap">
   <h1>Bounty Radar</h1>
-  <p class="lede">Every Web3 bug bounty program on Immunefi that pays <strong>without KYC</strong>,
+  <p class="lede"><span class="ledefull">Every Web3 bug bounty program on Immunefi that pays <strong>without KYC</strong>,
   cross-referenced with GitHub so you can see whether the in-scope code has
   <strong>actually moved recently</strong>. Immunefi's &ldquo;updated&rdquo; date tracks the
-  <em>program page</em>. This tracks the <em>code</em>.</p>
-  <p class="verdict" style="margin-top:14px"><b>Hunting one of these?</b> <a href="/check/">Check who
+  <em>program page</em>. This tracks the <em>code</em>.</span><span class="ledeshort">Immunefi
+  bounties that pay <strong>without KYC</strong>, with the date the in-scope
+  <strong>code</strong> last moved.</span></p>
+  <p class="verdict pitch top" style="margin-top:14px"><b>Hunting one of these?</b> <a href="/check/">Check who
   controls the contract first</a> &mdash; free preview, $5 for the permanent page.
   <b>Building one instead?</b> <a href="/hire/">I review the Solidity</a> &mdash; $900 full review,
   $150 automated scan.</p>
 </header>
 
-<section class="wrap">
+<section class="wrap" id="numbers">
   <div class="tiles">
     <div class="tile"><span class="k">On Immunefi</span><b>{t['allPrograms']}</b></div>
     <div class="tile"><span class="k">Pay with no KYC</span><b>{t['noKyc']}</b></div>
@@ -385,15 +388,6 @@ def render(d):
   <p class="note" style="margin-top:12px">The highlighted number is the one this page exists for.
   Amber means one thing throughout: <b>the in-scope code moved in the last 30 days.</b></p>
 
-  <div class="verdict">
-    <p><b>The number that surprised me:</b> of {t['allPrograms']} live Immunefi programs, only
-    <b>{t.get('safeHarborAll',0)}</b> have <b>Safe Harbor</b> active &mdash; published legal terms
-    that protect a good-faith researcher. Among the {t['noKyc']} that pay without KYC, it is
-    <b>{t.get('safeHarborNoKyc',0)}</b>. Immunefi exposes this flag but does not let you filter or
-    rank on it, so it is easy to assume a legal protection that is usually not there. Use the
-    <b>Safe Harbor only</b> filter below. The program page is always authoritative &mdash; read the
-    terms yourself before you touch anything.</p>
-  </div>
 </section>
 
 <section class="wrap" id="table">
@@ -426,6 +420,20 @@ def render(d):
   {t.get('safeHarborNoKyc',0)} no-KYC programs have it. Clear a filter, or
   <a href="/radar/data.json">take the raw JSON</a> and combine the fields yourself.</p>
 
+  <p class="verdict pitch after"><b>Hunting one of these?</b> <a href="/check/">Check who
+  controls the contract first</a> &mdash; free preview, $5 for the permanent page.
+  <b>Building one instead?</b> <a href="/hire/">I review the Solidity</a> &mdash; $900 full review,
+  $150 automated scan.</p>
+  <div class="verdict">
+    <p><b>The number that surprised me:</b> of {t['allPrograms']} live Immunefi programs, only
+    <b>{t.get('safeHarborAll',0)}</b> have <b>Safe Harbor</b> active &mdash; published legal terms
+    that protect a good-faith researcher. Among the {t['noKyc']} that pay without KYC, it is
+    <b>{t.get('safeHarborNoKyc',0)}</b>. Immunefi exposes this flag but does not let you filter or
+    rank on it, so it is easy to assume a legal protection that is usually not there. Use the
+    <b>Safe Harbor only</b> filter below. The program page is always authoritative &mdash; read the
+    terms yourself before you touch anything.</p>
+  </div>
+
   <p class="note">A bounty scope usually spans several repositories. <b>Code last push</b> is the
   most recent push across <em>all</em> detected in-scope repos, and the repo column names which one
   it was &mdash; <span class="dim">+N</span> means N further in-scope repos were detected. Rows are
@@ -456,6 +464,10 @@ def render(d):
   severity and payout terms. Code liveness: the public GitHub API. This site publishes
   <b>derived metrics only</b> and is <b>not affiliated with Immunefi</b>.
   Generated {esc(d['generatedAt'])}.</p>
+  <p class="note">One thing this page counts: a click on a program, repo or filter adds a line
+  to my own server log naming <em>which link</em> &mdash; no cookie, no identifier, nothing sent to a
+  third party. It is how I learn which rows are worth keeping.
+  <a href="/privacy/">Privacy</a>.</p>
 </section>
 
 <section class="wrap">
@@ -521,8 +533,21 @@ def render(d):
     count.textContent = n + ' of ' + total + ' programs';
     empty.style.display = n ? 'none' : 'block';
   }}
+  // Which rows does anyone actually use? One GET to an empty file on this host; the
+  // access log line is the whole record. target=_blank, so the request is never
+  // cut off by navigation. Disclosed under "Where this comes from" and in /privacy/.
+  function hit(q){{
+    try {{ fetch('/radar/o?' + q, {{ keepalive: true, cache: 'no-store' }}).catch(function(){{}}); }} catch (e) {{}}
+  }}
+  document.addEventListener('click', function(ev){{
+    var a = ev.target.closest && ev.target.closest('main a[target="_blank"]');
+    if (!a) return;
+    var u; try {{ u = new URL(a.href); }} catch (e) {{ return; }}
+    hit('to=' + encodeURIComponent((u.hostname + u.pathname).slice(0, 120)));
+  }});
   document.querySelectorAll('.f[data-f]').forEach(function(b){{
     b.onclick = function(){{
+      hit('f=' + b.dataset.f);
       document.querySelectorAll('.f[data-f]').forEach(function(x){{ x.classList.remove('on'); }});
       b.classList.add('on');
       apply(b.dataset.f);
