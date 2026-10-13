@@ -205,7 +205,7 @@ def render_html(ctx):
   <p class="note">This page shows the latest diff only. <a href="/radar/changes/feed.xml">feed.xml</a>
   (RSS) keeps every change since the index started &mdash; {ctx["feedCount"]} so far &mdash; so you can
   follow it in a feed reader instead of checking back here.</p>
-  <p class="note">Generated {ctx["stamp"]}.</p>
+  <p class="note">Latest snapshot taken {ctx["stamp"]}.</p>
 </section>
 </main>
 
@@ -229,6 +229,16 @@ def main():
         print("אין תמונות מצב — לא נבנה דיף", file=sys.stderr); return 1
 
     curd, cur = load(snaps[-1])
+    # החותמת היא זמן תמונת המצב האחרונה, לא זמן הרינדור. הסקריפט רץ כל שעה והדאטה
+    # מתחלף פעם ביום; "Generated <עכשיו>" שינה את הדף 24 פעמים ביום בלי שהתוכן זז,
+    # ו-indexnow שלח אותו מחדש 505 מתוך 508 ריצות (נמדד 12.10.26).
+    snap_stamp = curd.get("generatedAt")
+    if snap_stamp:
+        stamp = snap_stamp
+        try:
+            now = datetime.datetime.strptime(snap_stamp, "%Y-%m-%d %H:%M UTC").replace(tzinfo=datetime.timezone.utc)
+        except ValueError:
+            pass
     ctx = {"stamp": stamp, "curCount": len(cur),
            "curDate": os.path.basename(snaps[-1])[:-5],
            "prevDate": None, "baseline": len(snaps) < 2,
