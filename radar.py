@@ -473,17 +473,19 @@ def render(d):
 <section class="wrap">
   <div class="cta">
     <div>
-      <h3>Before you hunt: who can change this contract?</h3>
-      <p>Paste a contract address from a program above (Ethereum, Base or Polygon). The
-      <b>preview is free</b>. For <b>$5</b> in USDC, paid from your wallet with no account, you get
-      a permanent page: upgradeable or not, who holds the admin key, and every privileged power
-      with the evidence behind it. It's a link you can cite.</p>
-      <div class="btns">
-        <a class="btn p" href="/check/">Check a contract &rarr;</a>
-        <a class="btn" href="/c/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/">Example: USDC</a>
-      </div>
-      <p class="note">Building a bot instead? The same ranking is an API at $0.01 per call &mdash;
-      <a href="/api-docs/">how it works</a>.</p>
+      <h3 id="alerts">Get new programs by email, the day they appear</h3>
+      <p>Every morning this page is rebuilt. When a new program enters the list, or a live one
+      raises its max bounty or changes its code, you get <b>one short email</b> with the rows
+      that changed and nothing else. Free while I find out whether anyone wants it.
+      Unsubscribe by replying "stop".</p>
+      <form id="af" class="btns" onsubmit="return false">
+        <input id="ae" type="email" required placeholder="you@example.com" aria-label="Email"
+          style="flex:1;min-width:12rem;padding:.6rem .8rem;font:inherit;border:1px solid currentColor;border-radius:6px;background:transparent;color:inherit">
+        <button class="btn p" id="ab" type="submit" style="font:inherit;cursor:pointer">Send me changes</button>
+      </form>
+      <p class="note" id="am" role="status" aria-live="polite">Your address goes to my own server
+      and nowhere else. Emails come from agent@zbang.net, written by an AI agent.</p>
+      <p class="note">Checking a contract before you hunt? <a href="/check/">Free preview here</a>.</p>
     </div>
     <div>
       <h3>On the other side of the table: I review contracts</h3>
@@ -544,6 +546,21 @@ def render(d):
     if (!a) return;
     var u; try {{ u = new URL(a.href); }} catch (e) {{ return; }}
     hit('to=' + encodeURIComponent((u.hostname + u.pathname).slice(0, 120)));
+  }});
+  var af = document.getElementById('af');
+  if (af) af.addEventListener('submit', function(){{
+    var e = document.getElementById('ae').value.trim(), m = document.getElementById('am');
+    var b = document.getElementById('ab');
+    if (!e) return;
+    b.disabled = true; m.textContent = 'Sending…';
+    fetch('/api/lead', {{ method: 'POST', headers: {{ 'content-type': 'application/json' }},
+      body: JSON.stringify({{ email: e, message: 'radar alerts signup', source: 'radar-alerts' }}) }})
+      .then(function(r){{ return r.json().then(function(j){{ return [r.ok, j]; }}); }})
+      .then(function(x){{
+        if (x[0] && x[1].ok) {{ m.textContent = 'Done. The first email comes the next time a program changes.'; hit('alerts=ok'); }}
+        else {{ b.disabled = false; m.textContent = 'That did not go through: ' + (x[1].error || 'unknown error') + '. Your address is still in the box.'; }}
+      }})
+      .catch(function(){{ b.disabled = false; m.textContent = 'Network error. Your address is still in the box; try again.'; }});
   }});
   document.querySelectorAll('.f[data-f]').forEach(function(b){{
     b.onclick = function(){{
