@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-20 13:01 UTC",
+ "generatedAt": "2026-11-21 09:04 UTC",
  "source": "https://immunefi.com/bug-bounty/ (program metadata) + GitHub API (code liveness)",
  "note": "Derived metrics only. Every row links back to the official program page. Not affiliated with Immunefi.",
  "builtBy": "selfagent — autonomous AI agent operated by Ofir Baranes. https://agent.zbang.net",
@@ -22,7 +22,7 @@
    "kyc": false,
    "maxBounty": 10000000,
    "staleDays": 0,
-   "ageDays": 1744,
+   "ageDays": 1745,
    "updated": "2026-11-20",
    "launched": "2022-02-10",
    "project": "Sky",
@@ -41,7 +41,7 @@
    "repoCount": 6,
    "language": "Solidity",
    "stars": 932,
-   "pushedAt": "2026-11-19",
+   "pushedAt": "2026-11-20",
    "archived": false,
    "codeStatus": "hot",
    "codeAgeDays": 1,
@@ -54,7 +54,7 @@
    "kyc": false,
    "maxBounty": 500000,
    "staleDays": 0,
-   "ageDays": 9,
+   "ageDays": 10,
    "updated": "2026-11-20",
    "launched": "2026-11-10",
    "project": "Metric",
@@ -74,7 +74,7 @@
    "pushedAt": "2026-11-15",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 5,
+   "codeAgeDays": 6,
    "evm": true
   },
   {
@@ -84,7 +84,7 @@
    "kyc": false,
    "maxBounty": 5000000,
    "staleDays": 0,
-   "ageDays": 1114,
+   "ageDays": 1115,
    "updated": "2026-11-20",
    "launched": "2023-11-01",
    "project": "Spark",
@@ -103,10 +103,10 @@
    "repoCount": 5,
    "language": "Solidity",
    "stars": 221,
-   "pushedAt": "2026-11-04",
+   "pushedAt": "2026-11-20",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 16,
+   "codeAgeDays": 1,
    "evm": true
   },
   {
@@ -115,7 +115,7 @@
    "paused": false,
    "kyc": false,
    "maxBounty": 5000000,
-   "staleDays": 1,
+   "staleDays": 2,
    "ageDays": 1857,
    "updated": "2026-11-18",
    "launched": "2021-10-20",
@@ -129,12 +129,12 @@
     "gmx-io/gmx-contracts"
    ],
    "repoCount": 2,
-   "language": "JavaScript",
+   "language": "TypeScript",
    "stars": 524,
    "pushedAt": "2026-11-17",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 3,
+   "codeAgeDays": 4,
    "evm": false
   },
   {
@@ -144,7 +144,7 @@
    "kyc": false,
    "maxBounty": 3333333,
    "staleDays": 0,
-   "ageDays": 1778,
+   "ageDays": 1779,
    "updated": "2026-11-20",
    "launched": "2022-01-06",
    "project": "Olympus",
@@ -161,7 +161,7 @@
    "pushedAt": "2026-09-03",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 78,
+   "codeAgeDays": 79,
    "evm": true
   },
   {
@@ -171,7 +171,7 @@
    "kyc": false,
    "maxBounty": 2000000,
    "staleDays": 0,
-   "ageDays": 1238,
+   "ageDays": 1239,
    "updated": "2026-11-20",
    "launched": "2023-06-30",
    "project": "Rhino.fi",
@@ -188,7 +188,7 @@
    "pushedAt": "2025-03-12",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 618,
+   "codeAgeDays": 619,
    "evm": true
   },
   {
@@ -198,7 +198,7 @@
    "kyc": false,
    "maxBounty": 2000000,
    "staleDays": 0,
-   "ageDays": 1743,
+   "ageDays": 1744,
    "updated": "2026-11-20",
    "launched": "2022-02-11",
    "project": "Gnosis Chain",
@@ -211,13 +211,13 @@
     "gnosischain/omnibridge"
    ],
    "repoCount": 2,
-   "language": "JavaScript",
+   "language": "Solidity",
    "stars": 4,
    "pushedAt": "2026-11-09",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 11,
-   "evm": false
+   "codeAgeDays": 12,
+   "evm": true
   },
   {
    "slug": "lido",
@@ -226,7 +226,7 @@
    "kyc": false,
    "maxBounty": 2000000,
    "staleDays": 0,
-   "ageDays": 2008,
+   "ageDays": 2009,
    "updated": "2026-11-20",
    "launched": "2021-05-22",
    "project": "Lido",
@@ -248,7 +248,7 @@
    "pushedAt": "2026-11-20",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 0,
+   "codeAgeDays": 1,
    "evm": false
   },
   {
@@ -258,7 +258,7 @@
    "kyc": false,
    "maxBounty": 100000,
    "staleDays": 0,
-   "ageDays": 137,
+   "ageDays": 138,
    "updated": "2026-11-20",
    "launched": "2026-07-06",
    "project": "GMTrade",
@@ -272,7 +272,7 @@
    "repoCount": 1,
    "language": "Rust",
    "stars": 41,
-   "pushedAt": "2026-11-19",
+   "pushedAt": "2026-11-20",
    "archived": false,
    "codeStatus": "hot",
    "codeAgeDays": 1,
@@ -302,7 +302,7 @@
    "pushedAt": "2026-06-08",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 165,
+   "codeAgeDays": 166,
    "evm": true
   },
   {
@@ -312,8 +312,8 @@
    "kyc": false,
    "maxBounty": 1000000,
    "staleDays": 0,
-   "ageDays": 1617,
-   "updated": "2026-11-20",
+   "ageDays": 1618,
+   "updated": "2026-11-21",
    "launched": "2022-06-16",
    "project": "Lista DAO",
    "safeHarbor": false,
@@ -331,7 +331,7 @@
    "pushedAt": "2026-11-19",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 1,
+   "codeAgeDays": 2,
    "evm": true
   },
   {
@@ -341,7 +341,7 @@
    "kyc": false,
    "maxBounty": 1000000,
    "staleDays": 0,
-   "ageDays": 1824,
+   "ageDays": 1825,
    "updated": "2026-11-20",
    "launched": "2021-11-22",
    "project": "Origin Protocol",
@@ -358,7 +358,7 @@
    "pushedAt": "2026-11-08",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 12,
+   "codeAgeDays": 13,
    "evm": true
   },
   {
@@ -368,7 +368,7 @@
    "kyc": false,
    "maxBounty": 1000000,
    "staleDays": 0,
-   "ageDays": 2063,
+   "ageDays": 2064,
    "updated": "2026-11-20",
    "launched": "2021-03-28",
    "project": "PancakeSwap",
@@ -389,7 +389,7 @@
    "pushedAt": "2026-10-02",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 49,
+   "codeAgeDays": 50,
    "evm": true
   },
   {
@@ -424,7 +424,7 @@
    "kyc": false,
    "maxBounty": 550000,
    "staleDays": 0,
-   "ageDays": 1380,
+   "ageDays": 1381,
    "updated": "2026-11-20",
    "launched": "2023-02-08",
    "project": "Flux Finance",
@@ -441,7 +441,7 @@
    "pushedAt": "2024-06-10",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 893,
+   "codeAgeDays": 894,
    "evm": false
   },
   {
@@ -470,7 +470,7 @@
    "pushedAt": "2026-11-18",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 2,
+   "codeAgeDays": 3,
    "evm": false
   },
   {
@@ -505,7 +505,7 @@
    "kyc": false,
    "maxBounty": 500000,
    "staleDays": 0,
-   "ageDays": 1582,
+   "ageDays": 1583,
    "updated": "2026-11-20",
    "launched": "2022-07-21",
    "project": "Ankr",
@@ -530,7 +530,7 @@
    "kyc": false,
    "maxBounty": 500000,
    "staleDays": 0,
-   "ageDays": 1645,
+   "ageDays": 1646,
    "updated": "2026-11-20",
    "launched": "2022-05-19",
    "project": "Orca",
@@ -543,12 +543,12 @@
     "orca-so/whirlpools"
    ],
    "repoCount": 2,
-   "language": "Rust",
+   "language": "TypeScript",
    "stars": 578,
    "pushedAt": "2026-11-03",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 17,
+   "codeAgeDays": 18,
    "evm": false
   },
   {
@@ -558,7 +558,7 @@
    "kyc": false,
    "maxBounty": 500000,
    "staleDays": 0,
-   "ageDays": 1887,
+   "ageDays": 1888,
    "updated": "2026-11-20",
    "launched": "2021-09-20",
    "project": "Instadapp",
@@ -573,13 +573,13 @@
     "Instadapp/inst-governance"
    ],
    "repoCount": 4,
-   "language": "TypeScript",
+   "language": "Solidity",
    "stars": 303,
-   "pushedAt": "2026-11-20",
+   "pushedAt": "2026-11-21",
    "archived": false,
    "codeStatus": "hot",
    "codeAgeDays": 0,
-   "evm": false
+   "evm": true
   },
   {
    "slug": "benqi",
@@ -613,7 +613,7 @@
    "kyc": false,
    "maxBounty": 150000,
    "staleDays": 0,
-   "ageDays": 266,
+   "ageDays": 267,
    "updated": "2026-11-20",
    "launched": "2026-02-26",
    "project": "Alchemix",
@@ -631,7 +631,7 @@
    "pushedAt": "2026-11-09",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 11,
+   "codeAgeDays": 12,
    "evm": true
   },
   {
@@ -641,7 +641,7 @@
    "kyc": false,
    "maxBounty": 350000,
    "staleDays": 0,
-   "ageDays": 2039,
+   "ageDays": 2040,
    "updated": "2026-11-20",
    "launched": "2021-04-21",
    "project": "DeFi Saver",
@@ -658,7 +658,7 @@
    "pushedAt": "2026-11-19",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 1,
+   "codeAgeDays": 2,
    "evm": true
   },
   {
@@ -685,7 +685,7 @@
    "pushedAt": "2026-11-16",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 4,
+   "codeAgeDays": 5,
    "evm": false
   },
   {
@@ -695,7 +695,7 @@
    "kyc": false,
    "maxBounty": 100000,
    "staleDays": 0,
-   "ageDays": 308,
+   "ageDays": 309,
    "updated": "2026-11-20",
    "launched": "2026-01-15",
    "project": "Zest Protocol V2",
@@ -712,7 +712,7 @@
    "pushedAt": "2026-09-02",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 79,
+   "codeAgeDays": 80,
    "evm": false
   },
   {
@@ -722,7 +722,7 @@
    "kyc": false,
    "maxBounty": 300000,
    "staleDays": 0,
-   "ageDays": 2048,
+   "ageDays": 2049,
    "updated": "2026-11-20",
    "launched": "2021-04-12",
    "project": "Aevo",
@@ -747,7 +747,7 @@
    "kyc": false,
    "maxBounty": 250000,
    "staleDays": 0,
-   "ageDays": 1814,
+   "ageDays": 1815,
    "updated": "2026-11-20",
    "launched": "2021-12-01",
    "project": "Marinade",
@@ -764,7 +764,7 @@
    "pushedAt": "2026-11-17",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 3,
+   "codeAgeDays": 4,
    "evm": false
   },
   {
@@ -774,7 +774,7 @@
    "kyc": false,
    "maxBounty": 15000,
    "staleDays": 0,
-   "ageDays": 59,
+   "ageDays": 60,
    "updated": "2026-11-20",
    "launched": "2026-09-21",
    "project": "SP1",
@@ -788,11 +788,11 @@
    ],
    "repoCount": 2,
    "language": "Rust",
-   "stars": 1794,
+   "stars": 1793,
    "pushedAt": "2026-11-20",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 0,
+   "codeAgeDays": 1,
    "evm": false
   },
   {
@@ -802,7 +802,7 @@
    "kyc": false,
    "maxBounty": 222222,
    "staleDays": 0,
-   "ageDays": 1368,
+   "ageDays": 1369,
    "updated": "2026-11-20",
    "launched": "2023-02-20",
    "project": "Hydration",
@@ -817,12 +817,12 @@
     "galacticcouncil/Hydradx-ui"
    ],
    "repoCount": 4,
-   "language": "Rust",
+   "language": "TypeScript",
    "stars": 437,
    "pushedAt": "2026-11-20",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 0,
+   "codeAgeDays": 1,
    "evm": false
   },
   {
@@ -845,13 +845,13 @@
     "enzymefinance/onyx-sdk"
    ],
    "repoCount": 2,
-   "language": "TypeScript",
+   "language": "Solidity",
    "stars": 22,
    "pushedAt": "2026-10-19",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 32,
-   "evm": false
+   "codeAgeDays": 33,
+   "evm": true
   },
   {
    "slug": "aster",
@@ -860,7 +860,7 @@
    "kyc": false,
    "maxBounty": 200000,
    "staleDays": 0,
-   "ageDays": 583,
+   "ageDays": 584,
    "updated": "2026-11-20",
    "launched": "2025-04-16",
    "project": "Aster",
@@ -885,7 +885,7 @@
    "kyc": false,
    "maxBounty": 200000,
    "staleDays": 0,
-   "ageDays": 1526,
+   "ageDays": 1527,
    "updated": "2026-11-20",
    "launched": "2022-09-16",
    "project": "Beets",
@@ -902,7 +902,7 @@
    "pushedAt": "2025-11-07",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 378,
+   "codeAgeDays": 379,
    "evm": false
   },
   {
@@ -912,7 +912,7 @@
    "kyc": false,
    "maxBounty": 200000,
    "staleDays": 0,
-   "ageDays": 1763,
+   "ageDays": 1764,
    "updated": "2026-11-20",
    "launched": "2022-01-21",
    "project": "deBridge",
@@ -929,7 +929,7 @@
    "pushedAt": "2026-10-10",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 41,
+   "codeAgeDays": 42,
    "evm": false
   },
   {
@@ -939,7 +939,7 @@
    "kyc": false,
    "maxBounty": 200000,
    "staleDays": 0,
-   "ageDays": 1968,
+   "ageDays": 1969,
    "updated": "2026-11-20",
    "launched": "2021-07-01",
    "project": "Yearn Finance",
@@ -964,7 +964,7 @@
    "kyc": false,
    "maxBounty": 200000,
    "staleDays": 0,
-   "ageDays": 2062,
+   "ageDays": 2063,
    "updated": "2026-11-20",
    "launched": "2021-03-29",
    "project": "Enzyme Blue",
@@ -981,7 +981,7 @@
    "pushedAt": "2026-09-25",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 56,
+   "codeAgeDays": 57,
    "evm": true
   },
   {
@@ -991,8 +991,8 @@
    "kyc": false,
    "maxBounty": 200000,
    "staleDays": 0,
-   "ageDays": 2065,
-   "updated": "2026-11-20",
+   "ageDays": 2066,
+   "updated": "2026-11-21",
    "launched": "2021-03-26",
    "project": "SushiSwap",
    "safeHarbor": false,
@@ -1016,8 +1016,8 @@
    "kyc": false,
    "maxBounty": 50000,
    "staleDays": 0,
-   "ageDays": 307,
-   "updated": "2026-11-20",
+   "ageDays": 308,
+   "updated": "2026-11-21",
    "launched": "2026-01-16",
    "project": "Twyne",
    "safeHarbor": false,
@@ -1034,7 +1034,7 @@
    "pushedAt": "2026-09-14",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 67,
+   "codeAgeDays": 68,
    "evm": true
   },
   {
@@ -1044,7 +1044,7 @@
    "kyc": false,
    "maxBounty": 150000,
    "staleDays": 0,
-   "ageDays": 1302,
+   "ageDays": 1303,
    "updated": "2026-11-20",
    "launched": "2023-04-28",
    "project": "Threshold Network",
@@ -1058,12 +1058,12 @@
     "threshold-network/solidity-contracts"
    ],
    "repoCount": 2,
-   "language": "JavaScript",
+   "language": "TypeScript",
    "stars": 136,
    "pushedAt": "2026-11-16",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 4,
+   "codeAgeDays": 5,
    "evm": false
   },
   {
@@ -1073,7 +1073,7 @@
    "kyc": false,
    "maxBounty": 100000,
    "staleDays": 0,
-   "ageDays": 900,
+   "ageDays": 901,
    "updated": "2026-11-20",
    "launched": "2024-06-03",
    "project": "Arkadiko",
@@ -1090,7 +1090,7 @@
    "pushedAt": "2026-09-26",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 55,
+   "codeAgeDays": 56,
    "evm": false
   },
   {
@@ -1100,7 +1100,7 @@
    "kyc": false,
    "maxBounty": 100000,
    "staleDays": 0,
-   "ageDays": 1168,
+   "ageDays": 1169,
    "updated": "2026-11-20",
    "launched": "2023-09-08",
    "project": "Extra Finance",
@@ -1150,7 +1150,7 @@
    "kyc": false,
    "maxBounty": 100000,
    "staleDays": 0,
-   "ageDays": 2086,
+   "ageDays": 2087,
    "updated": "2026-11-20",
    "launched": "2021-03-05",
    "project": "Synthetix",
@@ -1175,7 +1175,7 @@
    "kyc": false,
    "maxBounty": 100000,
    "staleDays": 0,
-   "ageDays": 2179,
+   "ageDays": 2180,
    "updated": "2026-11-20",
    "launched": "2020-12-02",
    "project": "Harvest Finance",
@@ -1194,7 +1194,7 @@
    "pushedAt": "2026-11-05",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 15,
+   "codeAgeDays": 16,
    "evm": false
   },
   {
@@ -1204,7 +1204,7 @@
    "kyc": false,
    "maxBounty": 75000,
    "staleDays": 0,
-   "ageDays": 1953,
+   "ageDays": 1954,
    "updated": "2026-11-20",
    "launched": "2021-07-15",
    "project": "Beefy Finance",
@@ -1229,7 +1229,7 @@
    "kyc": false,
    "maxBounty": 51000,
    "staleDays": 0,
-   "ageDays": 1071,
+   "ageDays": 1072,
    "updated": "2026-11-20",
    "launched": "2023-12-15",
    "project": "Velvet Capital",
@@ -1254,7 +1254,7 @@
    "kyc": false,
    "maxBounty": 50000,
    "staleDays": 0,
-   "ageDays": 1542,
+   "ageDays": 1543,
    "updated": "2026-11-20",
    "launched": "2022-08-31",
    "project": "JustLend DAO",
@@ -1279,7 +1279,7 @@
    "kyc": false,
    "maxBounty": 50000,
    "staleDays": 0,
-   "ageDays": 1696,
+   "ageDays": 1697,
    "updated": "2026-11-20",
    "launched": "2022-03-29",
    "project": "Hashflow",
@@ -1321,7 +1321,7 @@
    "pushedAt": "2026-11-03",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 17,
+   "codeAgeDays": 18,
    "evm": true
   },
   {
@@ -1331,7 +1331,7 @@
    "kyc": false,
    "maxBounty": 50000,
    "staleDays": 0,
-   "ageDays": 1868,
+   "ageDays": 1869,
    "updated": "2026-11-20",
    "launched": "2021-10-08",
    "project": "Gamma",
@@ -1348,7 +1348,7 @@
    "pushedAt": "2026-03-03",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 262,
+   "codeAgeDays": 263,
    "evm": true
   },
   {
@@ -1358,7 +1358,7 @@
    "kyc": false,
    "maxBounty": 50000,
    "staleDays": 0,
-   "ageDays": 1981,
+   "ageDays": 1982,
    "updated": "2026-11-20",
    "launched": "2021-06-17",
    "project": "Ichi",
@@ -1375,7 +1375,7 @@
    "pushedAt": "2024-02-03",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 1021,
+   "codeAgeDays": 1022,
    "evm": false
   },
   {
@@ -1385,7 +1385,7 @@
    "kyc": false,
    "maxBounty": 50000,
    "staleDays": 0,
-   "ageDays": 2066,
+   "ageDays": 2067,
    "updated": "2026-11-20",
    "launched": "2021-03-25",
    "project": "Pareto Credit",
@@ -1409,8 +1409,8 @@
    "paused": false,
    "kyc": false,
    "maxBounty": 50000,
-   "staleDays": 7,
-   "ageDays": 2180,
+   "staleDays": 8,
+   "ageDays": 2181,
    "updated": "2026-11-12",
    "launched": "2020-12-01",
    "project": "Obyte",
@@ -1426,13 +1426,13 @@
     "byteball/prediction-markets-aa",
     "byteball/perpetual-aa"
    ],
-   "repoCount": 5,
+   "repoCount": 6,
    "language": "JavaScript",
-   "stars": 594,
+   "stars": 595,
    "pushedAt": "2026-11-20",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 0,
+   "codeAgeDays": 1,
    "evm": false
   },
   {
@@ -1442,7 +1442,7 @@
    "kyc": false,
    "maxBounty": 40000,
    "staleDays": 0,
-   "ageDays": 1147,
+   "ageDays": 1148,
    "updated": "2026-11-20",
    "launched": "2023-09-29",
    "project": "GammaSwap",
@@ -1467,7 +1467,7 @@
    "kyc": false,
    "maxBounty": 25000,
    "staleDays": 0,
-   "ageDays": 2096,
+   "ageDays": 2097,
    "updated": "2026-11-20",
    "launched": "2021-02-23",
    "project": "Nexus Mutual",
@@ -1484,7 +1484,7 @@
    "pushedAt": "2026-10-28",
    "archived": false,
    "codeStatus": "hot",
-   "codeAgeDays": 23,
+   "codeAgeDays": 24,
    "evm": false
   },
   {
@@ -1493,8 +1493,8 @@
    "paused": false,
    "kyc": false,
    "maxBounty": 100000,
-   "staleDays": 78,
-   "ageDays": 1019,
+   "staleDays": 79,
+   "ageDays": 1020,
    "updated": "2026-09-02",
    "launched": "2024-02-04",
    "project": "StackingDAO",
@@ -1512,7 +1512,7 @@
    "pushedAt": "2026-08-13",
    "archived": false,
    "codeStatus": "warm",
-   "codeAgeDays": 99,
+   "codeAgeDays": 100,
    "evm": false
   },
   {
@@ -1539,7 +1539,7 @@
    "pushedAt": "2021-11-22",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 1824,
+   "codeAgeDays": 1825,
    "evm": false
   },
   {
@@ -1549,8 +1549,8 @@
    "kyc": false,
    "maxBounty": 6000,
    "staleDays": 0,
-   "ageDays": 2114,
-   "updated": "2026-11-20",
+   "ageDays": 2115,
+   "updated": "2026-11-21",
    "launched": "2021-02-05",
    "project": "Charm",
    "safeHarbor": false,
@@ -1566,7 +1566,7 @@
    "pushedAt": "2023-07-06",
    "archived": false,
    "codeStatus": "cold",
-   "codeAgeDays": 1233,
+   "codeAgeDays": 1234,
    "evm": true
   },
   {
@@ -1576,8 +1576,8 @@
    "kyc": false,
    "maxBounty": 5000,
    "staleDays": 0,
-   "ageDays": 1470,
-   "updated": "2026-11-20",
+   "ageDays": 1471,
+   "updated": "2026-11-21",
    "launched": "2022-11-11",
    "project": "BlockPI Network",
    "safeHarbor": false,
